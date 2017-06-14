@@ -10,37 +10,24 @@
 #
 
 ####---- global variables ----begin####
-export nginx_version=1.12.0
-export httpd_version=2.2.27
+export tomcat_version=7.0.78
+export java_version=1.8
 export mysql_version=5.5.37
-export php_version=5.6.30
 export vsftpd_version=3.0.2
 export install_ftp_version=0.0.0
+export maven_version=3.5.0
 ####---- global variables ----end####
 
-web=nginx
-install_log=/alidata/website-info.log
+install_log=/lmdata/website-info.log
 
-####---- version selection ----begin####
-tmp=1
-read -p "Please select the web of nginx/apache, input 1 or 2 : " tmp
-if [ "$tmp" == "1" ];then
-  web=nginx
-elif [ "$tmp" == "2" ];then
-  web=apache
-fi
-
+####---- version confirm ----begin####
 tmp=1
 echo ""
 echo "You select the version :"
-echo "web    : $web"
-if echo $web |grep "nginx" > /dev/null;then
-  echo "nginx : $nginx_version"
-else
-  echo "apache : $httpd_version"
-fi
-echo "php    : $php_version"
+echo "tomcat    : $tomcat_version"
+echo "java      : $java_version"
 echo "mysql  : $mysql_version"
+echo "maven_version    :   $maven_version"
 
 read -p "Enter the y or Y to continue:" isY
 if [ "${isY}" != "y" ] && [ "${isY}" != "Y" ];then
@@ -55,14 +42,6 @@ echo "will be installed, wait ..."
 ####---- Clean up the environment ----end####
 
 
-if echo $web|grep "nginx" > /dev/null;then
-web_dir=nginx-${nginx_version}
-else
-web_dir=httpd-${httpd_version}
-fi
-
-php_dir=php-${php_version}
-
 if [ `uname -m` == "x86_64" ];then
 machine=x86_64
 else
@@ -70,29 +49,26 @@ machine=i686
 fi
 
 ####---- global variables ----begin####
-export web
-export web_dir
-export php_dir
+export tomcat_dir=tomcat-${tomcat_version}
+export java_dir=java-${java_version}
 export mysql_dir=mysql-${mysql_version}
+export maven_dir=maven-${maven_version}
 export vsftpd_dir=vsftpd-${vsftpd_version}
 ####---- global variables ----end####
 
 ifcentos=$(cat /proc/version | grep centos)
 
 ####---- install dependencies ----begin####
-if [ "$ifcentos" != "" ] || [ "$machine" == "i686" ];then
-rpm -e httpd-2.2.3-31.el5.centos gnome-user-share &> /dev/null
-fi
 
 \cp /etc/rc.local /etc/rc.local.bak
 if [ "$ifredhat" != "" ];then
-rpm -e --allmatches mysql MySQL-python perl-DBD-MySQL dovecot exim qt-MySQL perl-DBD-MySQL dovecot qt-MySQL mysql-server mysql-connector-odbc php-mysql mysql-bench libdbi-dbd-mysql mysql-devel-5.0.77-3.el5 httpd php mod_auth_mysql mailman squirrelmail php-pdo php-common php-mbstring php-cli &> /dev/null
+rpm -e --allmatches mysql MySQL-python perl-DBD-MySQL dovecot exim qt-MySQL perl-DBD-MySQL dovecot qt-MySQL mysql-server mysql-connector-odbc mysql-bench libdbi-dbd-mysql mysql-devel-5.0.77-3.el5 mod_auth_mysql mailman squirrelmail &> /dev/null
 fi
 
 if [ "$ifcentos" != "" ];then
   sed -i 's/^exclude/#exclude/' /etc/yum.conf
   yum makecache
-  yum -y remove mysql MySQL-python perl-DBD-MySQL dovecot exim qt-MySQL perl-DBD-MySQL dovecot qt-MySQL mysql-server mysql-connector-odbc php-mysql mysql-bench libdbi-dbd-mysql mysql-devel-5.0.77-3.el5 httpd php mod_auth_mysql mailman squirrelmail php-pdo php-common php-mbstring php-cli &> /dev/null
+  yum -y remove mysql MySQL-python perl-DBD-MySQL dovecot exim qt-MySQL perl-DBD-MySQL dovecot qt-MySQL mysql-server mysql-connector-odbc mysql-bench libdbi-dbd-mysql mysql-devel-5.0.77-3.el5 mod_auth_mysql mailman squirrelmail &> /dev/null
   yum -y install gcc gcc-c++ gcc-g77 make libtool autoconf patch unzip automake libxml2 libxml2-devel ncurses ncurses-devel libtool-ltdl-devel libtool-ltdl libmcrypt libmcrypt-devel libpng libpng-devel libjpeg-devel openssl openssl-devel curl curl-devel libxml2 libxml2-devel ncurses ncurses-devel libtool-ltdl-devel libtool-ltdl autoconf automake libaio*
   iptables -F
 else
