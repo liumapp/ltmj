@@ -96,6 +96,10 @@ echo "---------- env ok ----------" >> tmp.log
 ./mysql/install_${mysql_dir}.sh
 echo "---------- ${mysql_dir} ok ----------" >> tmp.log
 
+./java/install_${java_dir}.sh
+echo "------------- ${java_dir} ok ----------------" >> tmp.log
+
+
 if echo $web |grep "nginx" > /dev/null;then
 	./nginx/install_nginx-${nginx_version}.sh
 	echo "---------- ${web_dir} ok ----------" >> tmp.log

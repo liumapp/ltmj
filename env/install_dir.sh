@@ -17,7 +17,7 @@ mkdir -p /lmdata/server/${mysql_dir}
 ln -s /lmdata/server/${mysql_dir} /lmdata/server/mysql
 
 mkdir -p /lmdata/server/${java_dir}
-ln -s /lmdata/server/${java_dir} /lmdata/server/php
+ln -s /lmdata/server/${java_dir} /lmdata/server/java
 
 mkdir -p /lmdata/server/${tomcat_dir}
 ln -s /lmdata/server/${tomcat_dir} /lmdata/server/tomcat
