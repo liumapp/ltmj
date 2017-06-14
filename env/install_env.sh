@@ -151,7 +151,7 @@ echo "/usr/local/lib" > /etc/ld.so.conf.d/usrlib.conf
 cat > account.log << END
 ##########################################################################
 # 
-# thank you for using aliyun virtual machine
+# thank you for using liumapp virtual machine
 # 
 ##########################################################################
 
