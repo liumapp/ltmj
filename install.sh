@@ -114,23 +114,23 @@ echo "---------- php extension ok ----------" >> tmp.log
 ./ftp/install_${vsftpd_dir}.sh
 echo "---------- vsftpd-$vsftpd_version  ok ----------" >> tmp.log
 
-mkdir -p /alidata/www/default
+mkdir -p /lmdata/www/default
 if echo $web |grep "nginx" > /dev/null;then
-	\cp ./res/index-nginx.html /alidata/www/default/index.html
+	\cp ./res/index-nginx.html /lmdata/www/default/index.html
 else
-    \cp ./res/index-apache.html /alidata/www/default/index.html
+    \cp ./res/index-apache.html /lmdata/www/default/index.html
 fi
 
-cat > /alidata/www/default/info.php << EOF
+cat > /lmdata/www/default/info.php << EOF
 <?php
 phpinfo();
 ?>
 EOF
 
-chown www:www -R /alidata/www/
+chown www:www -R /lmdata/www/
 
-\cp ./res/initPasswd.sh /alidata/init/
-chmod 755 /alidata/init/initPasswd.sh
+\cp ./res/initPasswd.sh /lmdata/init/
+chmod 755 /lmdata/init/initPasswd.sh
 
 echo "---------- web init ok ----------" >> tmp.log
 ####---- install software ----end####
@@ -153,8 +153,8 @@ fi
 if ! cat /etc/rc.local | grep "/etc/init.d/vsftpd" > /dev/null;then
     echo "/etc/init.d/vsftpd start" >> /etc/rc.local
 fi
-if ! cat /etc/rc.local | grep "/alidata/init/initPasswd.sh" > /dev/null;then
-    echo "/alidata/init/initPasswd.sh" >> /etc/rc.local
+if ! cat /etc/rc.local | grep "/lmdata/init/initPasswd.sh" > /dev/null;then
+    echo "/lmdata/init/initPasswd.sh" >> /etc/rc.local
 fi
 ####---- Start command is written to the rc.local ----end####
 
@@ -169,7 +169,7 @@ fi
 ####---- mysql password initialization ----begin####
 echo "---------- rc init ok ----------" >> tmp.log
 TMP_PASS=$(date | md5sum |head -c 10)
-/alidata/server/mysql/bin/mysqladmin -u root password "$TMP_PASS"
+/lmdata/server/mysql/bin/mysqladmin -u root password "$TMP_PASS"
 sed -i s/'mysql_password'/${TMP_PASS}/g account.log
 echo "---------- mysql init ok ----------" >> tmp.log
 ####---- mysql password initialization ----end####
@@ -178,11 +178,11 @@ echo "---------- mysql init ok ----------" >> tmp.log
 ####---- Environment variable settings ----begin####
 \cp /etc/profile /etc/profile.bak
 if echo $web|grep "nginx" > /dev/null;then
-  echo 'export PATH=$PATH:/alidata/server/mysql/bin:/alidata/server/nginx/sbin:/alidata/server/php/sbin:/alidata/server/php/bin' >> /etc/profile
-  export PATH=$PATH:/alidata/server/mysql/bin:/alidata/server/nginx/sbin:/alidata/server/php/sbin:/alidata/server/php/bin
+  echo 'export PATH=$PATH:/lmdata/server/mysql/bin:/lmdata/server/nginx/sbin:/lmdata/server/php/sbin:/lmdata/server/php/bin' >> /etc/profile
+  export PATH=$PATH:/lmdata/server/mysql/bin:/lmdata/server/nginx/sbin:/lmdata/server/php/sbin:/lmdata/server/php/bin
 else
-  echo 'export PATH=$PATH:/alidata/server/mysql/bin:/alidata/server/httpd/bin:/alidata/server/php/sbin:/alidata/server/php/bin' >> /etc/profile
-  export PATH=$PATH:/alidata/server/mysql/bin:/alidata/server/httpd/bin:/alidata/server/php/sbin:/alidata/server/php/bin
+  echo 'export PATH=$PATH:/lmdata/server/mysql/bin:/lmdata/server/httpd/bin:/lmdata/server/php/sbin:/lmdata/server/php/bin' >> /etc/profile
+  export PATH=$PATH:/lmdata/server/mysql/bin:/lmdata/server/httpd/bin:/lmdata/server/php/sbin:/lmdata/server/php/bin
 fi
 ####---- Environment variable settings ----end####
 
@@ -201,6 +201,6 @@ fi
 ####---- log ----begin####
 \cp tmp.log $install_log
 cat $install_log
-\cp -a account.log /alidata/
+\cp -a account.log /lmdata/
 ####---- log ----end####
 bash

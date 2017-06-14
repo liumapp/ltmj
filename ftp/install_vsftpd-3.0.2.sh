@@ -24,10 +24,10 @@ fi
 
 /etc/init.d/vsftpd start
 
-chown -R www:www /alidata/www
+chown -R www:www /lmdata/www
 
 #bug kill: '500 OOPS: vsftpd: refusing to run with writable root inside chroot()'
-chmod a-w /alidata/www
+chmod a-w /lmdata/www
 
 MATRIX="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 LENGTH="9"
