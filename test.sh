@@ -14,8 +14,7 @@ echo Hello
 
 echo World
 
-install_log=/usr/local/shell/ltmj/install_log
+if [ ! -f vsftpd-3.0.2-2.el6.x86_64.rpm ];then
+    echo no
+fi
 
-echo tmp.log
-
-echo "---------- make dir ok ----------" >> tmp.log

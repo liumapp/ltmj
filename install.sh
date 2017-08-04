@@ -118,16 +118,7 @@ echo "---------- web init ok ----------" >> tmp.log
 if ! cat /etc/rc.local | grep "/etc/init.d/mysqld" > /dev/null;then
     echo "/etc/init.d/mysqld start" >> /etc/rc.local
 fi
-if echo $web|grep "nginx" > /dev/null;then
-  if ! cat /etc/rc.local | grep "/etc/init.d/nginx" > /dev/null;then
-     echo "/etc/init.d/nginx start" >> /etc/rc.local
-	 echo "/etc/init.d/php-fpm start" >> /etc/rc.local
-  fi
-else
-  if ! cat /etc/rc.local | grep "/etc/init.d/httpd" > /dev/null;then
-     echo "/etc/init.d/httpd start" >> /etc/rc.local
-  fi
-fi
+
 if ! cat /etc/rc.local | grep "/etc/init.d/vsftpd" > /dev/null;then
     echo "/etc/init.d/vsftpd start" >> /etc/rc.local
 fi

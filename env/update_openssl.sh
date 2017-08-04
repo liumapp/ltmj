@@ -5,7 +5,7 @@
 #Email: liumapp.com@gmail.com
 #homePage: http://www.liumapp.com
 #Date: 8/4/17
-#Time: 18:50 PM
+#Time: 6:50 PM
 #
 
 if ls /usr/local/ssl > /dev/null ;then

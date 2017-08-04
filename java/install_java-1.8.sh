@@ -5,14 +5,20 @@
 #Email: liumapp.com@gmail.com
 #homePage: http://www.liumapp.com
 #Date: 17/6/14
-#Time: 下午2:48
+#Time: 2:48 PM
 #
 
+
+## what kind of machine -- begin ##
 if [ `uname -m` == "x86_64" ];then
 machine=x86_64
 else
 machine=i686
 fi
+## what kind of machine -- end ##
+
+
+## install java  -- begin ##
 if [ $machine == "x86_64" ];then
   rm -rf jdk1.8.0_131
   if [ ! -f mysql-5.5.37-linux2.6-x86_64.tar.gz ];then
@@ -28,3 +34,5 @@ else
   tar -xzvf mysql-5.5.37-linux2.6-i686.tar.gz
   mv mysql-5.5.37-linux2.6-i686/* /alidata/server/mysql
 fi
+## install java -- end ##
+
