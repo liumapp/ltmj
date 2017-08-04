@@ -35,6 +35,7 @@ fi
 ####---- version selection ----end####
 
 
+
 ####---- Clean up the environment ----begin####
 echo "will be installed, wait ..."
 ./uninstall.sh in &> /dev/null
