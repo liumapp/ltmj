@@ -14,22 +14,8 @@ echo Hello
 
 echo World
 
-#create account.log
-cat > account.log << END
-##########################################################################
-#
-# thank you for using aliyun virtual machine
-# User: liumapp
-# Email: liumapp.com@gmail.com
-# homePage: http://www.liumapp.com
-#
-##########################################################################
+install_log=/usr/local/shell/ltmj/install_log
 
-FTP:
-account:www
-password:ftp_password
+echo tmp.log
 
-MySQL:
-account:root
-password:mysql_password
-END
+echo "---------- make dir ok ----------" >> tmp.log

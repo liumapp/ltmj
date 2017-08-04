@@ -89,7 +89,6 @@ echo "---------- ${mysql_dir} ok ----------" >> tmp.log
 ./java/install_${java_dir}.sh
 echo "------------- ${java_dir} ok ----------------" >> tmp.log
 
-
 if echo $web |grep "nginx" > /dev/null;then
 	./nginx/install_nginx-${nginx_version}.sh
 	echo "---------- ${web_dir} ok ----------" >> tmp.log
@@ -163,7 +162,6 @@ sed -i s/'mysql_password'/${TMP_PASS}/g account.log
 echo "---------- mysql init ok ----------" >> tmp.log
 ####---- mysql password initialization ----end####
 
-
 ####---- Environment variable settings ----begin####
 \cp /etc/profile /etc/profile.bak
 if echo $web|grep "nginx" > /dev/null;then
@@ -174,7 +172,6 @@ else
   export PATH=$PATH:/lmdata/server/mysql/bin:/lmdata/server/httpd/bin:/lmdata/server/php/sbin:/lmdata/server/php/bin
 fi
 ####---- Environment variable settings ----end####
-
 
 ####---- restart ----begin####
 if echo $web|grep "nginx" > /dev/null;then
