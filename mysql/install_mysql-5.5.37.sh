@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+#Created by PhpStorm.
+#User: liumapp
+#Email: liumapp.com@gmail.com
+#homePage: http://www.liumapp.com
+#Date: 8/4/17
+#Time: 7:20 PM
+#
+
 if [ `uname -m` == "x86_64" ];then
 machine=x86_64
 else

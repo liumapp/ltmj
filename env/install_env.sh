@@ -1,4 +1,13 @@
 #!/bin/sh
+#
+#Created by PhpStorm.
+#User: liumapp
+#Email: liumapp.com@gmail.com
+#homePage: http://www.liumapp.com
+#Date: 8/4/17
+#Time: 14:10 PM
+#
+
 
 CPU_NUM=$(cat /proc/cpuinfo | grep processor | wc -l)
 if [ ! -f libiconv-1.13.1.tar.gz ];then

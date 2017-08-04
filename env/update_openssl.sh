@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+#Created by PhpStorm.
+#User: liumapp
+#Email: liumapp.com@gmail.com
+#homePage: http://www.liumapp.com
+#Date: 8/4/17
+#Time: 18:50 PM
+#
+
 if ls /usr/local/ssl > /dev/null ;then
 	if openssl version -a |grep "OpenSSL 1.0.1h"  > /dev/null;then 
 		exit 0
