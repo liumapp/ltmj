@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 #Created by PhpStorm.
 #User: liumapp
@@ -13,12 +12,10 @@
 export tomcat_version=7.0.78
 export java_version=1.8
 export mysql_version=5.5.37
-export vsftpd_version=3.0.2
-export install_ftp_version=0.0.0
-export maven_version=3.5.0
+export vsftpd_version=3.0.3
 ####---- global variables ----end####
 
-install_log=/lmdata/website-info.log
+install_log=/alidata/website-info.log
 
 ####---- version confirm ----begin####
 tmp=1
@@ -27,7 +24,7 @@ echo "You select the version :"
 echo "tomcat    : $tomcat_version"
 echo "java      : $java_version"
 echo "mysql  : $mysql_version"
-echo "maven_version    :   $maven_version"
+echo "vsftpd : $vsftpd_version"
 
 read -p "Enter the y or Y to continue:" isY
 if [ "${isY}" != "y" ] && [ "${isY}" != "Y" ];then
@@ -35,12 +32,10 @@ if [ "${isY}" != "y" ] && [ "${isY}" != "Y" ];then
 fi
 ####---- version selection ----end####
 
-
 ####---- Clean up the environment ----begin####
 echo "will be installed, wait ..."
 ./uninstall.sh in &> /dev/null
 ####---- Clean up the environment ----end####
-
 
 if [ `uname -m` == "x86_64" ];then
 machine=x86_64
@@ -52,18 +47,12 @@ fi
 export tomcat_dir=tomcat-${tomcat_version}
 export java_dir=java-${java_version}
 export mysql_dir=mysql-${mysql_version}
-export maven_dir=maven-${maven_version}
 export vsftpd_dir=vsftpd-${vsftpd_version}
 ####---- global variables ----end####
 
 ifcentos=$(cat /proc/version | grep centos)
 
 ####---- install dependencies ----begin####
-
-\cp /etc/rc.local /etc/rc.local.bak
-if [ "$ifredhat" != "" ];then
-rpm -e --allmatches mysql MySQL-python perl-DBD-MySQL dovecot exim qt-MySQL perl-DBD-MySQL dovecot qt-MySQL mysql-server mysql-connector-odbc mysql-bench libdbi-dbd-mysql mysql-devel-5.0.77-3.el5 mod_auth_mysql mailman squirrelmail &> /dev/null
-fi
 
 if [ "$ifcentos" != "" ];then
   sed -i 's/^exclude/#exclude/' /etc/yum.conf
@@ -75,6 +64,7 @@ else
   echo "error !! Your system is not centos!"
   exit 0
 fi
+
 ####---- install dependencies ----end####
 
 ####---- openssl update---begin####
@@ -85,7 +75,7 @@ fi
 rm -f tmp.log
 echo tmp.log
 
-./env/install_set_ulimit.sh
+./env/install_set_ulimit.shalidata
 
 ./env/install_dir.sh
 echo "---------- make dir ok ----------" >> tmp.log
@@ -125,11 +115,6 @@ else
     \cp ./res/index-apache.html /lmdata/www/default/index.html
 fi
 
-cat > /lmdata/www/default/info.php << EOF
-<?php
-phpinfo();
-?>
-EOF
 
 chown www:www -R /lmdata/www/
 
