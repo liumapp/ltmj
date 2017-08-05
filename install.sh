@@ -118,7 +118,6 @@ echo "---------- web init ok ----------" >> tmp.log
 if ! cat /etc/rc.local | grep "/etc/init.d/mysqld" > /dev/null;then
     echo "/etc/init.d/mysqld start" >> /etc/rc.local
 fi
-
 if ! cat /etc/rc.local | grep "/etc/init.d/vsftpd" > /dev/null;then
     echo "/etc/init.d/vsftpd start" >> /etc/rc.local
 fi
@@ -147,8 +146,13 @@ echo "---------- mysql init ok ----------" >> tmp.log
 
 ####---- Environment variable settings ----begin####
 \cp /etc/profile /etc/profile.bak
-echo 'export PATH=$PATH:/alidata/server/mysql/bin' >> /etc/profile
-export PATH=$PATH:/alidata/server/mysql/bin
+JAVA_HOME=/alidata/server/java
+JRE_HOME=/alidata/server/java/jre
+echo 'export PATH=$PATH:/alidata/server/mysql/bin:/alidata/server/java/bin' >> /etc/profile
+export PATH=$PATH:/alidata/server/mysql/bin:/alidata/server/java/bin
+export JAVA_HOME
+export JRE_HOME
+source /etc/profile
 ####---- Environment variable settings ----end####
 
 
