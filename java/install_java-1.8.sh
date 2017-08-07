@@ -8,6 +8,7 @@
 #Time: 2:48 PM
 #
 
+yum install glibc.i686 -y
 
 ## what kind of machine -- begin ##
 if [ `uname -m` == "x86_64" ];then
@@ -20,19 +21,19 @@ fi
 
 ## install java  -- begin ##
 if [ $machine == "x86_64" ];then
-  rm -rf jdk-8u144-linux-i586
+  rm -rf jdk1.8.0_144
   if [ ! -f jdk-8u144-linux-i586.tar.gz ];then
 	 wget -O jdk-8u144-linux-i586.tar.gz http://om40sen9v.bkt.clouddn.com/14ca4f70f43e41f4a593fee6e56a1541.gz
   fi
   tar -xzvf jdk-8u144-linux-i586.tar.gz
-  mv jdk-8u144-linux-i586/* /alidata/server/java
+  mv jdk1.8.0_144/* /alidata/server/java
 else
-  rm -rf jdk-8u144-linux-x64
+  rm -rf jdk1.8.0_144
   if [ ! -f jdk-8u144-linux-x64.tar.gz ];then
     wget -O jdk-8u144-linux-x64.tar.gz http://om40sen9v.bkt.clouddn.com/d276ed2fa3bb481388a37853c295ccd4.gz
   fi
   tar -xzvf jdk-8u144-linux-x64.tar.gz
-  mv jdk-8u144-linux-x64/* /alidata/server/java
+  mv jdk1.8.0_144/* /alidata/server/java
 fi
 ## install java -- end ##
 
