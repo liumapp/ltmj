@@ -16,7 +16,7 @@ Linux(CentOS)+Tomcat+Mysql+Java环境自动化搭建脚本
   
 * 执行 install.sh
 
-* 安装结束，输入 java -version检查java是否安装成功，在浏览器访问"http://yourserverIp:8080"检查tomcat是否安装成功，mysql与ftp如果您希望远程登录的话，请执行相关配置（见注意事项）。
+* 安装结束，输入 java -version检查java是否安装成功，在浏览器访问 "http://yourserverIp:8080" 检查tomcat是否安装成功，mysql与ftp如果您希望远程登录的话，请执行相关配置（见注意事项）。
 
 ### 注意事项
 
