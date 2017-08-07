@@ -16,7 +16,7 @@ Linux(CentOS)+Tomcat+Mysql+Java环境自动化搭建脚本
   
 * 执行 install.sh
 
-* 安装结束，输入 java -version检查java是否安装成功，在浏览器访问http://yourserverIp:8080检查tomcat是否安装成功，mysql与ftp如果您希望远程登录的话，请执行相关配置（见注意事项）。
+* 安装结束，输入 java -version检查java是否安装成功，在浏览器访问"http://yourserverIp:8080"检查tomcat是否安装成功，mysql与ftp如果您希望远程登录的话，请执行相关配置（见注意事项）。
 
 ### 注意事项
 
@@ -28,10 +28,47 @@ Linux(CentOS)+Tomcat+Mysql+Java环境自动化搭建脚本
 
 * mysql安装好后默认是不允许外网连接的，如果您希望在本地开发环境下远程连接服务器的mysql服务，请执行以下操作：
 
-    * 
-
+    * 进入/alidata/server/mysql/bin目录
+    
+    * 执行./mysql -u root -p
+    
+    * 输入mysql密码
+    
+    * use mysql;（请不要丢失";"）
+    
+    * grant all on *.* to root@"%" identified by "yourloginpassword";
+    
+    * flush privileges;
+    
+    * exit;
 
 * mysql跟ftp帐号密码请见account.log文件
+
+    * 修改mysql账号密码：
+    
+        * 进入/alidata/server/mysql/bin目录
+        
+        * 执行./mysql -u root -p
+        
+        * 输入mysql密码（请见account.log文件）
+        
+        * use mysql;（请不要丢失";"）
+        
+        * update user set password=PASSWORD('yourpassword') where user='root';
+        
+        * flush privileges;
+        
+        * exit;
+        
+* ftp帐号默认是不允许远程登录的，如果需要，请进行以下配置：
+
+    * vim /etc/passwd
+    
+    * 找到www和ftp这一行，把它们的/sbin/nologin修改为/bin/bash
+    
+    * 这个时候如果您还是无法远程建立和ftp的的连接，请尝试以下步骤：
+    
+        * 
 
 
 

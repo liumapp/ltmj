@@ -51,3 +51,4 @@ echo "www:$PASS" | chpasswd
 fi
 
 sed -i s/'ftp_password'/${PASS}/g account.log
+
