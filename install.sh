@@ -100,6 +100,7 @@ echo "------------- ${java_dir} ok ----------------" >> tmp.log
 ./tomcat/install_${tomcat_dir}.sh
 echo "------------- ${tomcat_dir} ok ----------------" >> tmp.log
 
+
 ./ftp/install_${vsftpd_dir}.sh
 echo "---------- vsftpd-$vsftpd_version  ok ----------" >> tmp.log
 
@@ -157,6 +158,7 @@ source /etc/profile
 
 
 ####---- restart ----begin####
+/alidata/server/tomcat/bin/catalina.sh start
 /etc/init.d/vsftpd restart
 ####---- restart ----end####
 
