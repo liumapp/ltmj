@@ -66,9 +66,7 @@ Linux(CentOS)+Tomcat+Mysql+Java环境自动化搭建脚本
     
     * 找到www和ftp这一行，把它们的/sbin/nologin修改为/bin/bash
     
-    * 这个时候如果您还是无法远程建立和ftp的的连接，请尝试以下步骤：
-    
-        * 
+    * 这个时候如果您还是无法远程建立和ftp的的连接，请检查您的防火墙是否禁止了21端口的监听
 
 
 
