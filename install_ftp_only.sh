@@ -10,6 +10,8 @@
 
 export vsftpd_version=3.0.2
 
+export vsftpd_dir=vsftpd-${vsftpd_version}
+
 echo "Begin install vsftpd:"
 
 ./ftp/install_${vsftpd_dir}.sh
