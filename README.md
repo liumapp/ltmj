@@ -18,6 +18,14 @@ Linux(CentOS)+Tomcat+Mysql+Java环境自动化搭建脚本
 
 * 安装结束，输入 java -version检查java是否安装成功，在浏览器访问 "http://yourserverIp:8080" 检查tomcat是否安装成功，mysql与ftp如果您希望远程登录的话，请执行相关配置（见注意事项）。
 
+### 启动命令
+
+* mysql : /etc/init.d/mysqld start
+
+* tomcat : /alidata/server/tomcat/bin/catalina.sh start
+
+* vsftpd : /usr/sbin/vsftpd
+
 ### 注意事项
 
 * 所有程序都将安装在/alidata目录下
