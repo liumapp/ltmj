@@ -16,5 +16,9 @@ echo "Begin install vsftpd:"
 
 ./ftp/install_${vsftpd_dir}.sh
 
+if ! cat /etc/rc.local | grep "/etc/init.d/vsftpd" > /dev/null;then
+    echo "/etc/init.d/vsftpd start" >> /etc/rc.local
+fi
+
 /etc/init.d/vsftpd restart
 
