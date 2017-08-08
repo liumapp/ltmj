@@ -8,20 +8,21 @@
 #Time: 7:20 PM
 #
 
+
+
 if [ `uname -m` == "x86_64" ];then
 machine=x86_64
 else
 machine=i686
 fi
+
 ifrpm=$(cat /proc/version | grep -E "redhat|centos")
 ifdpkg=$(cat /proc/version | grep -Ei "ubuntu|debian")
 ifcentos=$(cat /proc/version | grep centos)
 
+yum -y install vsftpd
+
 if [ "$ifrpm" != "" ];then
-	if [ ! -f vsftpd-3.0.2-2.el6.x86_64.rpm ];then
-		wget http://test-oracle.oss-cn-hangzhou.aliyuncs.com/vsftpd-3.0.2-2.el6.x86_64.rpm
-	fi
-	rpm -ivh vsftpd-3.0.2-2.el6.x86_64.rpm
 	\cp -f ./ftp/config-ftp/rpm_ftp/* /etc/vsftpd/
 fi
 
