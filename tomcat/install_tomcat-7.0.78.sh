@@ -17,7 +17,7 @@ fi
 tar -xzvf apache-tomcat-7.0.78.tar.gz
 mv apache-tomcat-7.0.78/* /alidata/server/tomcat
 \cp -f ./tomcat/conf/server.xml /alidata/server/tomcat/conf/server.xml
-\cp -f ./tomcat/webapps/* /alidata/www/default
+\cp -R  ./tomcat/webapps/* /alidata/www/default
 
 ## install tomcat -- end ##
 
